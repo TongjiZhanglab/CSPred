@@ -94,7 +94,7 @@ def fewshot(activesite, activesite_not_in_aloop,
             X = torch.cat((x1, x2), dim=1)
             Y = np.array([1] * len(pos) + [0] * len(neg))
             both_emb = np.array([1 if i in kinases_cptac else 0 for i in pos + neg])
-            site_weight = np.array([2 if i in activesite_not_in_aloop else 1 for i in pos + neg])
+            site_weight = np.array([not_in_aloop_weight if i in activesite_not_in_aloop else 1 for i in pos + neg])
 
             x1_train, x1_test, x2_train, x2_test, \
             both_emb_train, both_emb_test, site_weight_train, site_weight_test, \
